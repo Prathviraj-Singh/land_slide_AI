@@ -1,0 +1,29 @@
+﻿# Dependencies
+node_modules/
+.pnp
+.pnp.js
+
+# Next.js
+.next/
+out/
+build/
+
+# Environment secrets
+.env
+.env.local
+.env*.local
+
+# ML training large data files
+ml-training/data/*.csv
+ml-training/data/__pycache__/
+ml-training/model.pkl
+ml-training/data/feature_importance.png
+
+# Misc
+.DS_Store
+*.log
+npm-debug.log*
+tsconfig.tsbuildinfo
+
+# OS
+Thumbs.db

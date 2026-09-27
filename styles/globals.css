@@ -1,0 +1,9 @@
+/* TODO: Global CSS styles and Tailwind base imports */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* OSM dark theme: invert light tiles to look like a dark map */
+.osm-dark-filter .leaflet-tile {
+  filter: invert(1) hue-rotate(180deg) brightness(0.9) contrast(0.9);
+}

@@ -1,0 +1,126 @@
+zone_id,zone_name,zone_lat,zone_lon,avg_slope_degrees
+shimla_hp,"Shimla, HP",31.1048,77.1734,23.11
+dharamshala_hp,"Dharamshala, HP",32.219,76.3234,10.88
+kullu_manali_hp,"Kullu/Manali, HP",31.9579,77.1095,10.2
+mandi_hp,"Mandi, HP",31.7084,76.9314,7.92
+chamba_hp,"Chamba, HP",32.5534,76.1258,15.44
+kinnaur_kalpa_hp,"Kinnaur (Kalpa), HP",31.5302,78.258,16.09
+rampur_bushahr_hp,"Rampur Bushahr, HP",31.4527,77.629,23.52
+solan_hp,"Solan, HP",30.9045,77.0967,12.9
+sundernagar_hp,"Sundernagar, HP",31.5218,76.9054,25.33
+keylong_lahaul_hp,"Keylong, Lahaul, HP",32.5714,77.0404,27.17
+kangra_hp,"Kangra, HP",32.0998,76.2691,14.27
+kasauli_hp,"Kasauli, HP",30.8981,76.9644,18.84
+joshimath_uk,"Joshimath, UK",30.5564,79.5664,27.65
+kedarnath_uk,"Kedarnath, UK",30.7352,79.0669,10.0
+nainital_uk,"Nainital, UK",29.3919,79.4542,13.66
+chamoli_uk,"Chamoli, UK",30.4137,79.3308,25.2
+uttarkashi_uk,"Uttarkashi, UK",30.7268,78.4354,6.85
+pithoragarh_uk,"Pithoragarh, UK",29.5829,80.2182,9.28
+rudraprayag_uk,"Rudraprayag, UK",30.284,78.9834,14.21
+tehri_garhwal_uk,"Tehri Garhwal, UK",30.3752,78.4337,15.72
+bageshwar_uk,"Bageshwar, UK",29.8339,79.7697,18.24
+almora_uk,"Almora, UK",29.5892,79.6467,16.63
+gopeshwar_uk,"Gopeshwar, UK",30.41,79.32,17.86
+munsiyari_uk,"Munsiyari, UK",30.0664,80.2381,12.91
+rishikesh_slopes_uk,"Rishikesh slopes, UK",30.0869,78.2676,0.76
+mussoorie_uk,"Mussoorie, UK",30.4598,78.0644,24.04
+ramban_j_s_hwy_j_k,"Ramban (J-S Hwy), J&K",33.2422,75.2444,35.66
+banihal_j_k,"Banihal, J&K",33.4367,75.1975,8.73
+doda_j_k,"Doda, J&K",33.1483,75.5472,17.54
+kishtwar_j_k,"Kishtwar, J&K",33.3124,75.7694,5.63
+poonch_j_k,"Poonch, J&K",33.7736,74.0931,6.67
+anantnag_j_k,"Anantnag, J&K",33.7311,75.1547,10.62
+gangtok_sikkim,"Gangtok, Sikkim",27.3389,88.6065,23.49
+mangan_north_sikkim,"Mangan, North Sikkim",27.5097,88.5279,23.43
+lachung_sikkim,"Lachung, Sikkim",27.693,88.747,11.11
+namchi_south_sikkim,"Namchi, South Sikkim",27.1654,88.3618,15.98
+singtam_sikkim,"Singtam, Sikkim",27.2337,88.5038,20.14
+rangpo_sikkim,"Rangpo, Sikkim",27.1756,88.5319,13.21
+darjeeling_wb,"Darjeeling, WB",27.041,88.2663,12.18
+kalimpong_wb,"Kalimpong, WB",27.0667,88.4667,19.64
+kurseong_wb,"Kurseong, WB",26.8829,88.2782,19.95
+mirik_wb,"Mirik, WB",26.8868,88.1833,9.75
+siliguri_foothills_wb,"Siliguri foothills, WB",26.7271,88.3953,0.77
+itanagar_arunachal_pradesh,"Itanagar, Arunachal Pradesh",27.0844,93.6053,9.55
+tawang_arunachal_pradesh,"Tawang, Arunachal Pradesh",27.586,91.8687,9.68
+bomdila_arunachal_pradesh,"Bomdila, Arunachal Pradesh",27.2645,92.4159,19.18
+along_arunachal_pradesh,"Along, Arunachal Pradesh",28.1653,94.759,19.21
+shillong_meghalaya,"Shillong, Meghalaya",25.5788,91.8933,6.48
+cherrapunji_meghalaya,"Cherrapunji, Meghalaya",25.2969,91.7322,29.21
+haflong_assam_dima_hasao,"Haflong, Assam (Dima Hasao)",25.1653,93.0127,13.83
+lumding_hills_assam,"Lumding Hills, Assam",25.7474,93.1697,1.71
+jowai_meghalaya,"Jowai, Meghalaya",25.4519,92.202,2.95
+kohima_nagaland,"Kohima, Nagaland",25.6701,94.1077,11.9
+dimapur_foothills_nagaland,"Dimapur foothills, Nagaland",25.9079,93.7273,1.37
+imphal_east_hills_manipur,"Imphal East hills, Manipur",24.7952,93.9516,0.45
+churachandpur_manipur,"Churachandpur, Manipur",24.3299,93.6774,3.41
+aizawl_mizoram,"Aizawl, Mizoram",23.7271,92.7176,17.65
+lunglei_mizoram,"Lunglei, Mizoram",22.8873,92.7289,24.1
+champhai_mizoram,"Champhai, Mizoram",23.4567,93.3266,14.58
+chooralmala_meppadi_wayanad_kerala,"Chooralmala/Meppadi, Wayanad, Kerala",11.554,76.13,9.71
+munnar_idukki_kerala,"Munnar, Idukki, Kerala",10.0889,77.0595,10.06
+kattippara_kozhikode_kerala,"Kattippara, Kozhikode, Kerala",11.4083,75.9475,4.68
+peermedu_idukki_kerala,"Peermedu, Idukki, Kerala",9.5713,76.9881,8.89
+devikulam_idukki_kerala,"Devikulam, Idukki, Kerala",10.0578,77.1011,14.88
+vagamon_kerala,"Vagamon, Kerala",9.6856,76.9034,14.24
+madikeri_coorg_karnataka,"Madikeri, Coorg, Karnataka",12.4244,75.7382,4.72
+agumbe_shivamogga_karnataka,"Agumbe, Shivamogga, Karnataka",13.5042,75.0931,3.48
+chikmagalur_karnataka,"Chikmagalur, Karnataka",13.3161,75.772,1.92
+sakleshpur_karnataka,"Sakleshpur, Karnataka",12.9424,75.7852,5.12
+siddapura_uttara_kannada_karnataka,"Siddapura, Uttara Kannada, Karnataka",14.3497,74.8885,4.18
+nilgiris_coonoor_ooty_tn,"Nilgiris (Coonoor/Ooty), TN",11.4102,76.695,8.29
+kodaikanal_tn,"Kodaikanal, TN",10.2381,77.4892,5.17
+valparai_tn,"Valparai, TN",10.326,76.9495,4.35
+gudalur_nilgiris_tn,"Gudalur, Nilgiris, TN",11.5009,76.4895,5.3
+mahabaleshwar_maharashtra,"Mahabaleshwar, Maharashtra",17.9237,73.6586,5.75
+ratnagiri_chiplun_maharashtra,"Ratnagiri/Chiplun, Maharashtra",17.5323,73.5186,1.39
+ambeghat_tamhini_maharashtra,"Ambeghat/Tamhini, Maharashtra",18.4558,73.4192,19.68
+lonavala_khandala_maharashtra,"Lonavala/Khandala, Maharashtra",18.7546,73.4062,1.94
+igatpuri_maharashtra,"Igatpuri, Maharashtra",19.695,73.5626,0.87
+matheran_maharashtra,"Matheran, Maharashtra",18.9866,73.2669,5.46
+malshej_ghat_maharashtra,"Malshej Ghat, Maharashtra",19.3502,73.7831,15.05
+lucknow_up_plains,"Lucknow, UP (plains)",26.8467,80.9462,1.12
+kanpur_up_plains,"Kanpur, UP (plains)",26.4499,80.3319,0.87
+patna_bihar_plains,"Patna, Bihar (plains)",25.5941,85.1376,1.0
+varanasi_up_plains,"Varanasi, UP (plains)",25.3176,82.9739,0.66
+prayagraj_up_plains,"Prayagraj, UP (plains)",25.4358,81.8463,0.96
+gorakhpur_up_plains,"Gorakhpur, UP (plains)",26.7606,83.3732,0.84
+bareilly_up_plains,"Bareilly, UP (plains)",28.367,79.4304,0.66
+meerut_up_plains,"Meerut, UP (plains)",28.9845,77.7064,0.62
+jaipur_rajasthan_dry,"Jaipur, Rajasthan (dry)",26.9124,75.7873,0.78
+jodhpur_rajasthan_arid,"Jodhpur, Rajasthan (arid)",26.2389,73.0243,0.3
+bikaner_rajasthan_desert,"Bikaner, Rajasthan (desert)",28.0229,73.3119,0.77
+udaipur_rajasthan_plateau,"Udaipur, Rajasthan (plateau)",24.5854,73.7125,1.47
+kota_rajasthan_flat,"Kota, Rajasthan (flat)",25.2138,75.8648,1.51
+nagpur_maharashtra_plateau,"Nagpur, Maharashtra (plateau)",21.1458,79.0882,2.67
+hyderabad_telangana_plateau,"Hyderabad, Telangana (plateau)",17.385,78.4867,1.36
+bengaluru_karnataka_plateau,"Bengaluru, Karnataka (plateau)",12.9716,77.5946,2.41
+bhopal_mp_plateau,"Bhopal, MP (plateau)",23.2599,77.4126,1.55
+indore_mp_plateau,"Indore, MP (plateau)",22.7196,75.8577,1.81
+raipur_chhattisgarh_plains,"Raipur, Chhattisgarh (plains)",21.2514,81.6296,0.71
+pune_city_maharashtra_urban_plateau,"Pune city, Maharashtra (urban plateau)",18.5204,73.8567,2.9
+aurangabad_maharashtra_plateau,"Aurangabad, Maharashtra (plateau)",19.8762,75.3433,1.55
+akola_maharashtra_flat,"Akola, Maharashtra (flat)",20.7002,77.0082,1.25
+amravati_maharashtra_flat,"Amravati, Maharashtra (flat)",20.9374,77.7796,1.23
+chennai_tn_coastal,"Chennai, TN (coastal)",13.0827,80.2707,1.48
+visakhapatnam_ap_coast,"Visakhapatnam, AP (coast)",17.6868,83.2185,15.47
+bhubaneswar_odisha_coast,"Bhubaneswar, Odisha (coast)",20.2961,85.8245,1.46
+kolkata_wb_delta,"Kolkata, WB (delta)",22.5726,88.3639,0.97
+ahmedabad_gujarat_flat,"Ahmedabad, Gujarat (flat)",23.0225,72.5714,1.46
+surat_gujarat_flat_coast,"Surat, Gujarat (flat coast)",21.1702,72.8311,1.76
+chandigarh_foothills_plains,Chandigarh (foothills/plains),30.7333,76.7794,1.17
+ludhiana_punjab_plains,"Ludhiana, Punjab (plains)",30.901,75.8573,0.79
+amritsar_punjab_plains,"Amritsar, Punjab (plains)",31.634,74.8723,1.12
+hisar_haryana_flat,"Hisar, Haryana (flat)",29.1492,75.7217,0.83
+karnal_haryana_flat,"Karnal, Haryana (flat)",29.6857,76.9905,0.97
+guwahati_assam_valley,"Guwahati, Assam (valley)",26.1445,91.7362,0.86
+jorhat_assam_plains,"Jorhat, Assam (plains)",26.7509,94.2037,0.45
+tezpur_assam_valley,"Tezpur, Assam (valley)",26.6338,92.784,1.18
+silchar_assam_valley,"Silchar, Assam (valley)",24.8333,92.7789,0.79
+agartala_tripura_low_hills,"Agartala, Tripura (low hills)",23.8315,91.2868,0.56
+madurai_tn_dry_inland,"Madurai, TN (dry inland)",9.9252,78.1198,0.92
+tiruchirappalli_tn_dry,"Tiruchirappalli, TN (dry)",10.7905,78.7047,0.87
+mysuru_karnataka_mild_plateau,"Mysuru, Karnataka (mild plateau)",12.2958,76.6394,1.95
+bellary_karnataka_dry,"Bellary, Karnataka (dry)",15.1394,76.9214,1.26
+tirupati_ap_dry_hills,"Tirupati, AP (dry hills)",13.6288,79.4192,1.39
