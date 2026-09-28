@@ -3,7 +3,7 @@
  *
  * Scans monitored zones, checks for critical risk thresholds (score >= 76),
  * enforces alert streak deduplication, dispatches emergency emails,
- * and persists alert audit logs into MySQL.
+ * and persists alert audit logs into PostgreSQL.
  */
 
 import { query } from "../db/client";
@@ -56,11 +56,11 @@ export async function checkAndSendAlerts(): Promise<CheckAlertsResult> {
     if (score >= 76) {
       criticalCount++;
 
-      // Check if an alert was already sent for the current active streak in MySQL
+      // Check if an alert was already sent for the current active streak in PostgreSQL
       let recentAlerts: any[] = [];
       try {
         recentAlerts = await query<any[]>(
-          "SELECT * FROM alerts WHERE zone_id = ? ORDER BY sent_at DESC LIMIT 1",
+          "SELECT * FROM alerts WHERE zone_id = $1 ORDER BY sent_at DESC LIMIT 1",
           [zoneId]
         );
       } catch (dbErr) {
@@ -87,15 +87,17 @@ export async function checkAndSendAlerts(): Promise<CheckAlertsResult> {
         triggeredAt: new Date().toISOString(),
       });
 
-      // Insert new alert record into MySQL alerts table
+      // Insert new alert record into PostgreSQL alerts table
       try {
         const insertRes = await query<any>(
-          "INSERT INTO alerts (zone_id, score_at_alert, level, sent_at, email_sent) VALUES (?, ?, 'CRITICAL', NOW(), ?)",
-          [zoneId, score, emailResult.sent ? 1 : 0]
+          "INSERT INTO alerts (zone_id, score_at_alert, level, sent_at, email_sent) VALUES ($1, $2, 'CRITICAL', NOW(), $3) RETURNING id",
+          [zoneId, score, emailResult.sent]
         );
 
+        const insertedId = (insertRes && insertRes[0] && insertRes[0].id) || insertRes.insertId || Date.now();
+
         const newAlert: AlertRecord = {
-          id: insertRes.insertId || Date.now(),
+          id: insertedId,
           zone_id: zoneId,
           zone_name: name,
           score_at_alert: score,
@@ -131,7 +133,7 @@ export async function getRecentAlerts(limit: number = 20): Promise<AlertRecord[]
        FROM alerts a 
        LEFT JOIN zones z ON a.zone_id = z.id 
        ORDER BY a.sent_at DESC 
-       LIMIT ?`,
+       LIMIT $1`,
       [limit]
     );
     return rows.map((r) => ({

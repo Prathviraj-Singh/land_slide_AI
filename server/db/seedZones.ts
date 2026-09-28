@@ -2,50 +2,22 @@
  * Seed Script for LandslideShield AI Database.
  *
  * Reads all real monitored landslide zones and slope degrees from
- * server/db/seed-data/slope_by_zone.csv (or ml-training/data/slope_by_zone.csv).
+ * server/data/slope_by_zone.json statically imported for zero-fs runtime capability.
  *
  * For EVERY zone:
  * 1. Fetches live 7-day weather & soil moisture telemetry via Open-Meteo API.
  * 2. Fetches spatial historical landslide event density (within 20km) from NASA catalog.
- * 3. Executes the real ONNX model (server/ml/model.onnx) to compute a live 0-100 risk score
+ * 3. Executes pure TypeScript ML model to compute a live 0-100 risk score
  *    and SHAP feature percentage breakdown.
  * 4. Inserts/updates 'zones' and 'risk_factors' tables idempotently.
  * 5. Logs progress per zone and prints a final risk-level summary.
  */
 
-import fs from "fs";
-import path from "path";
+import slopeData from "../data/slope_by_zone.json";
 import { query, pool } from "./client";
 import { predictRiskScore } from "../ml/runInference";
 import { fetchLiveWeatherAndSoil } from "../external-data/openMeteoClient";
 import { fetchNearbyLandslideHistory } from "../external-data/landslideHistoryClient";
-
-// Load environment configuration in standalone execution mode
-try {
-  // eslint-disable-next-line @typescript-eslint/no-var-requires
-  const { loadEnvConfig } = require("@next/env");
-  loadEnvConfig(process.cwd());
-} catch {
-  const envPath = path.join(process.cwd(), ".env");
-  if (fs.existsSync(envPath)) {
-    const envContent = fs.readFileSync(envPath, "utf-8");
-    for (const line of envContent.split(/\r?\n/)) {
-      const trimmed = line.trim();
-      if (!trimmed || trimmed.startsWith("#")) continue;
-      const eqIdx = trimmed.indexOf("=");
-      if (eqIdx > 0) {
-        const key = trimmed.slice(0, eqIdx).trim();
-        let val = trimmed.slice(eqIdx + 1).trim();
-        if ((val.startsWith('"') && val.endsWith('"')) || (val.startsWith("'") && val.endsWith("'"))) {
-          val = val.slice(1, -1);
-        }
-        if (!process.env[key]) {
-          process.env[key] = val;
-        }
-      }
-    }
-  }
-}
 
 export interface ZoneSeedItem {
   id: string;
@@ -55,121 +27,12 @@ export interface ZoneSeedItem {
   slope: number;
 }
 
-/**
- * Parses a single CSV line with support for quoted strings containing commas.
- */
-function parseCsvLine(line: string): string[] {
-  const result: string[] = [];
-  let current = "";
-  let inQuotes = false;
-
-  for (let i = 0; i < line.length; i++) {
-    const char = line[i];
-    if (char === '"') {
-      inQuotes = !inQuotes;
-    } else if (char === "," && !inQuotes) {
-      result.push(current.trim());
-      current = "";
-    } else {
-      current += char;
-    }
-  }
-  result.push(current.trim());
-  return result;
-}
-
-/**
- * Creates a URL-friendly and database-safe zone ID slug.
- */
-function createZoneSlug(name: string): string {
-  return name
-    .toLowerCase()
-    .replace(/[^a-z0-9]+/g, "_")
-    .replace(/^_+|_+$/g, "")
-    .slice(0, 64);
-}
-
-/**
- * Resolves the slope_by_zone.csv file path inside the application folder or ml-training.
- */
-function resolveSlopeCsvPath(): string {
-  const candidates = [
-    path.join(process.cwd(), "server", "db", "seed-data", "slope_by_zone.csv"),
-    path.join(__dirname, "seed-data", "slope_by_zone.csv"),
-    path.join(process.cwd(), "ml-training", "data", "slope_by_zone.csv"),
-    path.join(__dirname, "..", "..", "ml-training", "data", "slope_by_zone.csv"),
-  ];
-
-  for (const candidate of candidates) {
-    if (fs.existsSync(candidate)) {
-      return candidate;
-    }
-  }
-
-  throw new Error(
-    `[seedZones] slope_by_zone.csv not found. Tried paths:\n` +
-      candidates.map((c) => `  - ${c}`).join("\n")
-  );
-}
-
-/**
- * Loads all monitored zones from slope_by_zone.csv.
- */
 export function loadSeedZones(): ZoneSeedItem[] {
-  try {
-    const csvPath = resolveSlopeCsvPath();
-    const content = fs.readFileSync(csvPath, "utf-8");
-    const lines = content.split(/\r?\n/).filter((l) => l.trim().length > 0);
-
-    if (lines.length <= 1) {
-      console.warn(`[seedZones] CSV file at ${csvPath} is empty or has no header.`);
-      return [];
-    }
-
-    const header = parseCsvLine(lines[0]).map((h) =>
-      h.toLowerCase().replace(/^"/, "").replace(/"$/, "")
-    );
-
-    const idIdx = header.findIndex((h) => h === "zone_id" || h === "id");
-    const nameIdx = header.findIndex((h) => h === "zone_name" || h === "name");
-    const latIdx = header.findIndex((h) => h === "zone_lat" || h === "lat" || h === "latitude");
-    const lonIdx = header.findIndex((h) => h === "zone_lon" || h === "lon" || h === "longitude");
-    const slopeIdx = header.findIndex(
-      (h) => h === "avg_slope_degrees" || h === "slope" || h === "avg_slope" || h === "slope_degrees"
-    );
-
-    const zones: ZoneSeedItem[] = [];
-
-    for (let i = 1; i < lines.length; i++) {
-      const cols = parseCsvLine(lines[i]);
-      if (cols.length === 0 || (cols.length === 1 && !cols[0])) continue;
-
-      const lat = latIdx >= 0 ? parseFloat(cols[latIdx]) : NaN;
-      const lon = lonIdx >= 0 ? parseFloat(cols[lonIdx]) : NaN;
-      if (isNaN(lat) || isNaN(lon)) continue;
-
-      let name = nameIdx >= 0 && cols[nameIdx] ? cols[nameIdx].replace(/^"/, "").replace(/"$/, "") : `Zone_${lat.toFixed(4)}_${lon.toFixed(4)}`;
-      let id = idIdx >= 0 && cols[idIdx] ? cols[idIdx].replace(/^"/, "").replace(/"$/, "") : createZoneSlug(name);
-      const slope = slopeIdx >= 0 && !isNaN(parseFloat(cols[slopeIdx])) ? parseFloat(cols[slopeIdx]) : 15.0;
-
-      zones.push({
-        id,
-        name,
-        lat,
-        lon,
-        slope,
-      });
-    }
-
-    return zones;
-  } catch (error: any) {
-    console.error("[seedZones] Failed to load zones from CSV:", error.message);
-    return [];
-  }
+  return slopeData as ZoneSeedItem[];
 }
 
 /**
- * Exported INITIAL_ZONES array loaded directly from the real dataset.
+ * Exported INITIAL_ZONES array loaded statically.
  */
 export const INITIAL_ZONES: ZoneSeedItem[] = loadSeedZones();
 
@@ -181,23 +44,23 @@ function sleep(ms: number): Promise<void> {
 }
 
 /**
- * Main seeding function: reads all real zones, runs live ONNX inference with real telemetry,
- * and updates MySQL idempotently.
+ * Main seeding function: reads all real zones, runs live inference with real telemetry,
+ * and updates PostgreSQL idempotently.
  */
 export async function seed() {
   console.log("======================================================================");
-  console.log("  LandslideShield AI -- Real ONNX ML Database Zone Seeder");
+  console.log("  LandslideShield AI -- Real ML Database Zone Seeder");
   console.log("======================================================================");
 
   const zones = loadSeedZones();
   const totalZones = zones.length;
 
   if (totalZones === 0) {
-    console.error("[FAIL] No zones loaded from slope_by_zone.csv. Aborting seed.");
+    console.error("[FAIL] No zones loaded from slope_by_zone.json. Aborting seed.");
     return;
   }
 
-  console.log(`[INFO] Loaded ${totalZones} zones from CSV. Starting live inference & database seeding...\n`);
+  console.log(`[INFO] Loaded ${totalZones} zones from static JSON. Starting live inference & database seeding...\n`);
 
   const summary = {
     total: totalZones,
@@ -222,7 +85,7 @@ export async function seed() {
         try {
           weatherData = await fetchLiveWeatherAndSoil(zone.lat, zone.lon);
           break;
-        } catch (err: any) {
+        } catch {
           retries--;
           if (retries < 0) {
             weatherData = {
@@ -257,7 +120,7 @@ export async function seed() {
       const slopeDegrees = zone.slope;
       const historicalDensity = historyData?.totalNearbyEvents ?? 0;
 
-      // 4. Run real ONNX model inference
+      // 4. Run real TS model inference
       const prediction = await predictRiskScore({
         rainfall: avgRainfall7d,
         soilMoisture: avgSoilMoisture,
@@ -278,16 +141,16 @@ export async function seed() {
         summary.safe++;
       }
 
-      // 6. Idempotent Upsert into MySQL 'zones' table
+      // 6. Idempotent Upsert into PostgreSQL 'zones' table
       await query(
         `INSERT INTO zones (id, name, lat, lon, current_score, trend, last_updated)
-         VALUES (?, ?, ?, ?, ?, 'stable', NOW())
-         ON DUPLICATE KEY UPDATE
-           name = VALUES(name),
-           lat = VALUES(lat),
-           lon = VALUES(lon),
-           current_score = VALUES(current_score),
-           trend = VALUES(trend),
+         VALUES ($1, $2, $3, $4, $5, 'stable', NOW())
+         ON CONFLICT (id) DO UPDATE SET
+           name = EXCLUDED.name,
+           lat = EXCLUDED.lat,
+           lon = EXCLUDED.lon,
+           current_score = EXCLUDED.current_score,
+           trend = EXCLUDED.trend,
            last_updated = NOW()`,
         [zone.id, zone.name, zone.lat, zone.lon, score]
       );
@@ -295,7 +158,7 @@ export async function seed() {
       // 7. Insert corresponding risk_factors row
       await query(
         `INSERT INTO risk_factors (zone_id, rainfall_pct, soil_pct, slope_pct, history_pct, computed_at)
-         VALUES (?, ?, ?, ?, ?, NOW())`,
+         VALUES ($1, $2, $3, $4, $5, NOW())`,
         [
           zone.id,
           prediction.factorBreakdown.rainfall_pct,
@@ -305,10 +168,8 @@ export async function seed() {
         ]
       );
 
-      // Print progress as specified: [012/124] Seeding Joshimath, UK -> score: 71
       console.log(`[${indexStr}/${totalZones}] Seeding ${zone.name} -> score: ${score}`);
 
-      // Small throttle to avoid Open-Meteo burst rate-limiting
       await sleep(60);
     } catch (err: any) {
       summary.errors++;

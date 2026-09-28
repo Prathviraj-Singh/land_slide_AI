@@ -2,7 +2,7 @@
  * Risk Score Aggregation & Evaluation Service.
  *
  * Pulls live environmental telemetry, computes ML model risk score, calculates trend,
- * persists updates to MySQL, and queries nearby impacted infrastructure assets.
+ * persists updates to PostgreSQL, and queries nearby impacted infrastructure assets.
  */
 
 import { query } from "../db/client";
@@ -52,13 +52,13 @@ export interface ZoneDetailResult {
 
 /**
  * Updates a zone's risk score by pulling live telemetry, running ONNX inference,
- * and saving updated scores and trend into MySQL tables (zones, risk_factors).
+ * and saving updated scores and trend into PostgreSQL tables (zones, risk_factors).
  */
 export async function updateZoneRiskScore(zoneId: string): Promise<RiskPredictionResult & { trend: "rising" | "stable" | "falling" }> {
   // 1. Fetch zone details from DB
   let zone: ZoneRecord | null = null;
   try {
-    const rows = await query<any[]>("SELECT * FROM zones WHERE id = ?", [zoneId]);
+    const rows = await query<any[]>("SELECT * FROM zones WHERE id = $1", [zoneId]);
     if (rows && rows.length > 0) {
       zone = {
         id: rows[0].id,
@@ -128,15 +128,15 @@ export async function updateZoneRiskScore(zoneId: string): Promise<RiskPredictio
     trend = "falling";
   }
 
-  // 5. Persist updates into MySQL tables (zones, risk_factors)
+  // 5. Persist updates into PostgreSQL tables (zones, risk_factors)
   try {
     await query(
-      "UPDATE zones SET current_score = ?, trend = ?, last_updated = NOW() WHERE id = ?",
+      "UPDATE zones SET current_score = $1, trend = $2, last_updated = NOW() WHERE id = $3",
       [newScore, trend, zoneId]
     );
 
     await query(
-      "INSERT INTO risk_factors (zone_id, rainfall_pct, soil_pct, slope_pct, history_pct, computed_at) VALUES (?, ?, ?, ?, ?, NOW())",
+      "INSERT INTO risk_factors (zone_id, rainfall_pct, soil_pct, slope_pct, history_pct, computed_at) VALUES ($1, $2, $3, $4, $5, NOW())",
       [
         zoneId,
         prediction.factorBreakdown.rainfall_pct,
@@ -164,9 +164,9 @@ export async function getZoneDetail(zoneId: string): Promise<ZoneDetailResult> {
   let factorRows: any[] = [];
 
   try {
-    zoneRows = await query<any[]>("SELECT * FROM zones WHERE id = ?", [zoneId]);
+    zoneRows = await query<any[]>("SELECT * FROM zones WHERE id = $1", [zoneId]);
     factorRows = await query<any[]>(
-      "SELECT * FROM risk_factors WHERE zone_id = ? ORDER BY computed_at DESC LIMIT 1",
+      "SELECT * FROM risk_factors WHERE zone_id = $1 ORDER BY computed_at DESC LIMIT 1",
       [zoneId]
     );
   } catch (err) {

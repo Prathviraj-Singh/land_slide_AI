@@ -8,7 +8,7 @@
  * No API key required.
  *
  * NFR-03 Fallback: On all-endpoint failure, the last successful OSM response is read
- * from the `data_cache` MySQL table and returned with feed_status: "cached".
+ * from the `data_cache` PostgreSQL table and returned with feed_status: "cached".
  * The response is NEVER silently substituted with zero/fake data.
  */
 
@@ -18,8 +18,8 @@ async function writeOsmCache(cacheKey: string, payload: any): Promise<void> {
   try {
     await query(
       `INSERT INTO data_cache (source, payload, fetched_at)
-       VALUES (?, ?, NOW())
-       ON DUPLICATE KEY UPDATE payload = VALUES(payload), fetched_at = VALUES(fetched_at)`,
+       VALUES ($1, $2, NOW())
+       ON CONFLICT (source) DO UPDATE SET payload = EXCLUDED.payload, fetched_at = EXCLUDED.fetched_at`,
       [cacheKey, JSON.stringify(payload)]
     );
   } catch {
@@ -30,7 +30,7 @@ async function writeOsmCache(cacheKey: string, payload: any): Promise<void> {
 async function readOsmCache(cacheKey: string): Promise<{ data: any; fetched_at: string } | null> {
   try {
     const rows = await query<any[]>(
-      "SELECT payload, fetched_at FROM data_cache WHERE source = ? LIMIT 1",
+      "SELECT payload, fetched_at FROM data_cache WHERE source = $1 LIMIT 1",
       [cacheKey]
     );
     if (rows && rows.length > 0 && rows[0].payload) {

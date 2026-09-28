@@ -19,7 +19,7 @@ export async function GET(
       `SELECT rf.*, z.current_score 
        FROM risk_factors rf
        JOIN zones z ON rf.zone_id = z.id
-       WHERE rf.zone_id = ?
+       WHERE rf.zone_id = $1
        ORDER BY rf.computed_at ASC
        LIMIT 30`,
       [zoneId]

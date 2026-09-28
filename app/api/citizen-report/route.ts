@@ -28,12 +28,12 @@ export async function POST(request: NextRequest) {
     let insertId = Date.now();
     try {
       const res = await query<any>(
-        "INSERT INTO citizen_reports (zone_id, photo_url, description, lat, lon, status, submitted_at) VALUES (?, ?, ?, ?, ?, 'pending', NOW())",
+        "INSERT INTO citizen_reports (zone_id, photo_url, description, lat, lon, status, submitted_at) VALUES ($1, $2, $3, $4, $5, 'pending', NOW()) RETURNING id",
         [zone_id || null, photo_url || null, description, lat, lon]
       );
-      insertId = res.insertId || insertId;
+      insertId = (res && res[0] && res[0].id) || res.insertId || insertId;
     } catch (dbErr: any) {
-      console.warn("[POST /api/citizen-report] MySQL insert skipped:", dbErr.message);
+      console.warn("[POST /api/citizen-report] PostgreSQL insert skipped:", dbErr.message);
     }
 
     return NextResponse.json(

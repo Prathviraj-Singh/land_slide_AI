@@ -26,12 +26,12 @@ export async function PATCH(
     }
 
     try {
-      await query("UPDATE citizen_reports SET status = ? WHERE id = ?", [
+      await query("UPDATE citizen_reports SET status = $1 WHERE id = $2", [
         status,
         reportId,
       ]);
     } catch (dbErr: any) {
-      console.warn("[PATCH /api/citizen-report/[id]] MySQL update warning:", dbErr.message);
+      console.warn("[PATCH /api/citizen-report/[id]] PostgreSQL update warning:", dbErr.message);
     }
 
     return NextResponse.json({

@@ -1,13 +1,12 @@
 /**
- * ONNX Runtime Node.js Inference Engine for LandslideShield AI.
+ * Pure TypeScript Inference Engine for LandslideShield AI.
  *
- * Loads server/ml/model.onnx and executes real ONNX model predictions on input feature vectors.
- * Computes a 0-100 risk score and SHAP-based feature importance breakdown percentage.
+ * Statically imports model.json (exported from sklearn GradientBoostingClassifier / RandomForestClassifier)
+ * and executes decision tree traversal + sigmoid in pure TypeScript.
+ * Zero external native dependencies (onnxruntime-node removed) for seamless Vercel serverless deployment.
  */
 
-import path from "path";
-import fs from "fs";
-import * as ort from "onnxruntime-node";
+import modelData from "./model.json";
 
 export interface FeatureInput {
   rainfall: number;          // 7-day average rainfall (mm)
@@ -30,51 +29,76 @@ export interface RiskPredictionResult {
   factorBreakdown: FactorBreakdown;
 }
 
-let sessionInstance: ort.InferenceSession | null = null;
-
-/**
- * Resolves model.onnx filepath across server and project root environments.
- */
-function resolveModelPath(): string {
-  const candidates = [
-    path.join(process.cwd(), "server", "ml", "model.onnx"),
-    path.join(__dirname, "model.onnx"),
-    path.join(__dirname, "..", "..", "server", "ml", "model.onnx"),
-  ];
-
-  for (const candidate of candidates) {
-    if (fs.existsSync(candidate)) {
-      return candidate;
-    }
-  }
-
-  throw new Error(
-    `[runInference] ONNX model file not found. Tried paths:\n` +
-      candidates.map((c) => `  - ${c}`).join("\n") +
-      `\nPlease run 'python ml-training/export_to_onnx.py' to generate model.onnx.`
-  );
+interface TreeData {
+  children_left: number[];
+  children_right: number[];
+  feature: number[];
+  threshold: number[];
+  values: number[];
 }
 
-/**
- * Lazy initializer for ONNX InferenceSession pool.
- */
-async function getInferenceSession(): Promise<ort.InferenceSession> {
-  if (sessionInstance) return sessionInstance;
+interface ModelData {
+  model_type: string;
+  feature_names: string[];
+  learning_rate: number;
+  init_raw_score: number;
+  trees: TreeData[];
+}
 
-  const modelPath = resolveModelPath();
-  try {
-    sessionInstance = await ort.InferenceSession.create(modelPath);
-    return sessionInstance;
-  } catch (error: any) {
-    console.error(`[runInference] Failed to create ONNX session from ${modelPath}:`, error);
-    throw error;
+const model = modelData as unknown as ModelData;
+
+/**
+ * Executes tree traversal to compute class 1 (landslide) probability.
+ */
+export function predictProbability(features: FeatureInput): number {
+  const x = [
+    features.rainfall,
+    features.soilMoisture,
+    features.slope,
+    features.historicalDensity,
+  ];
+
+  if (model.model_type === "GradientBoostingClassifier") {
+    let rawScore = model.init_raw_score;
+    const lr = model.learning_rate;
+
+    for (const tree of model.trees) {
+      let node = 0;
+      while (tree.children_left[node] !== -1) {
+        const f = tree.feature[node];
+        const th = tree.threshold[node];
+        if (x[f] <= th) {
+          node = tree.children_left[node];
+        } else {
+          node = tree.children_right[node];
+        }
+      }
+      rawScore += lr * tree.values[node];
+    }
+    return 1.0 / (1.0 + Math.exp(-rawScore));
+  } else {
+    // RandomForestClassifier or default ensemble
+    let probSum = 0.0;
+    for (const tree of model.trees) {
+      let node = 0;
+      while (tree.children_left[node] !== -1) {
+        const f = tree.feature[node];
+        const th = tree.threshold[node];
+        if (x[f] <= th) {
+          node = tree.children_left[node];
+        } else {
+          node = tree.children_right[node];
+        }
+      }
+      probSum += tree.values[node];
+    }
+    return probSum / model.trees.length;
   }
 }
 
 /**
  * Computes SHAP-based percentage breakdown weighted by feature values and normalized to sum to 100%.
  */
-
 function computeSHAPBreakdown(features: FeatureInput): FactorBreakdown {
   // Baseline SHAP feature importances learned during training
   const baseWeightRainfall = 0.38;
@@ -108,45 +132,11 @@ function computeSHAPBreakdown(features: FeatureInput): FactorBreakdown {
 }
 
 /**
- * Runs real ONNX model inference and returns a 0-100 risk score and factor breakdown.
+ * Runs pure TypeScript model inference and returns a 0-100 risk score and factor breakdown.
  */
 export async function predictRiskScore(features: FeatureInput): Promise<RiskPredictionResult> {
-  const session = await getInferenceSession();
-
-  // Create 1x4 float32 input tensor: [avg_rainfall_7d, avg_soil_moisture_7d, slope_degrees, historical_landslide_density]
-  const inputData = Float32Array.from([
-    features.rainfall,
-    features.soilMoisture,
-    features.slope,
-    features.historicalDensity,
-  ]);
-
-  const inputTensor = new ort.Tensor("float32", inputData, [1, 4]);
-
-  const feeds: Record<string, ort.Tensor> = {};
-  const inputName = session.inputNames[0] || "float_input";
-  feeds[inputName] = inputTensor;
-
-  const results = await session.run(feeds);
-
-  // Extract probability array from ONNX output tensors
-  const outputNames = session.outputNames;
-  let probaArray: Float32Array | number[] = [0.5, 0.5];
-
-  if (outputNames.length > 1 && results[outputNames[1]]) {
-    probaArray = results[outputNames[1]].data as Float32Array;
-  } else if (results[outputNames[0]]) {
-    const mainOutput = results[outputNames[0]].data;
-    if (mainOutput.length >= 2) {
-      probaArray = mainOutput as Float32Array;
-    } else {
-      const p1 = Number(mainOutput[0]);
-      probaArray = [1.0 - p1, p1];
-    }
-  }
-
-  // Class 1 probability = landslide occurrence probability
-  let probability = Math.min(1.0, Math.max(0.0, Number(probaArray[1] ?? probaArray[0] ?? 0.5)));
+  let probability = predictProbability(features);
+  probability = Math.min(1.0, Math.max(0.0, probability));
   let score = Math.min(100, Math.max(0, Math.round(probability * 100)));
 
   // Domain-science safeguard:

@@ -36,7 +36,7 @@
  *    dispatches an email alert (with deduplication to avoid spam on active streaks).
  * 2. updateZoneRiskScore() — for every zone, fetches fresh weather, DEM slope,
  *    and landslide history data, runs ONNX inference, and persists the updated
- *    score + SHAP factor breakdown into MySQL.
+ *    score + SHAP factor breakdown into PostgreSQL.
  */
 
 import { NextRequest, NextResponse } from "next/server";

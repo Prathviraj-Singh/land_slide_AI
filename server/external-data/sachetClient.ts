@@ -120,8 +120,8 @@ async function writeSachetCache(alerts: SachetAlert[], fetchedAt: string): Promi
     const payload = JSON.stringify({ alerts, fetched_at: fetchedAt });
     await query(
       `INSERT INTO data_cache (source, payload, fetched_at)
-       VALUES (?, ?, ?)
-       ON DUPLICATE KEY UPDATE payload = VALUES(payload), fetched_at = VALUES(fetched_at)`,
+       VALUES ($1, $2, $3)
+       ON CONFLICT (source) DO UPDATE SET payload = EXCLUDED.payload, fetched_at = EXCLUDED.fetched_at`,
       [CACHE_SOURCE_KEY, payload, fetchedAt]
     );
   } catch (dbErr: any) {
@@ -137,7 +137,7 @@ async function writeSachetCache(alerts: SachetAlert[], fetchedAt: string): Promi
 async function readSachetCache(): Promise<{ alerts: SachetAlert[]; fetched_at: string } | null> {
   try {
     const rows = await query<any[]>(
-      "SELECT payload, fetched_at FROM data_cache WHERE source = ? ORDER BY fetched_at DESC LIMIT 1",
+      "SELECT payload, fetched_at FROM data_cache WHERE source = $1 ORDER BY fetched_at DESC LIMIT 1",
       [CACHE_SOURCE_KEY]
     );
     if (rows && rows.length > 0 && rows[0].payload) {

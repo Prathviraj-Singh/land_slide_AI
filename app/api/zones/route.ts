@@ -49,7 +49,7 @@ export async function GET(request: NextRequest) {
         success: true,
         count: fallbackZones.length,
         zones: fallbackZones,
-        warning: "MySQL offline -- using local seed fallback.",
+        warning: "PostgreSQL offline -- using local seed fallback.",
       },
       { status: 200 }
     );

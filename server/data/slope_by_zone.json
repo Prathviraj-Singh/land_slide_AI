@@ -1,0 +1,877 @@
+[
+  {
+    "id": "shimla_hp",
+    "name": "Shimla, HP",
+    "lat": 31.1048,
+    "lon": 77.1734,
+    "slope": 23.11
+  },
+  {
+    "id": "dharamshala_hp",
+    "name": "Dharamshala, HP",
+    "lat": 32.219,
+    "lon": 76.3234,
+    "slope": 10.88
+  },
+  {
+    "id": "kullu_manali_hp",
+    "name": "Kullu/Manali, HP",
+    "lat": 31.9579,
+    "lon": 77.1095,
+    "slope": 10.2
+  },
+  {
+    "id": "mandi_hp",
+    "name": "Mandi, HP",
+    "lat": 31.7084,
+    "lon": 76.9314,
+    "slope": 7.92
+  },
+  {
+    "id": "chamba_hp",
+    "name": "Chamba, HP",
+    "lat": 32.5534,
+    "lon": 76.1258,
+    "slope": 15.44
+  },
+  {
+    "id": "kinnaur_kalpa_hp",
+    "name": "Kinnaur (Kalpa), HP",
+    "lat": 31.5302,
+    "lon": 78.258,
+    "slope": 16.09
+  },
+  {
+    "id": "rampur_bushahr_hp",
+    "name": "Rampur Bushahr, HP",
+    "lat": 31.4527,
+    "lon": 77.629,
+    "slope": 23.52
+  },
+  {
+    "id": "solan_hp",
+    "name": "Solan, HP",
+    "lat": 30.9045,
+    "lon": 77.0967,
+    "slope": 12.9
+  },
+  {
+    "id": "sundernagar_hp",
+    "name": "Sundernagar, HP",
+    "lat": 31.5218,
+    "lon": 76.9054,
+    "slope": 25.33
+  },
+  {
+    "id": "keylong_lahaul_hp",
+    "name": "Keylong, Lahaul, HP",
+    "lat": 32.5714,
+    "lon": 77.0404,
+    "slope": 27.17
+  },
+  {
+    "id": "kangra_hp",
+    "name": "Kangra, HP",
+    "lat": 32.0998,
+    "lon": 76.2691,
+    "slope": 14.27
+  },
+  {
+    "id": "kasauli_hp",
+    "name": "Kasauli, HP",
+    "lat": 30.8981,
+    "lon": 76.9644,
+    "slope": 18.84
+  },
+  {
+    "id": "joshimath_uk",
+    "name": "Joshimath, UK",
+    "lat": 30.5564,
+    "lon": 79.5664,
+    "slope": 27.65
+  },
+  {
+    "id": "kedarnath_uk",
+    "name": "Kedarnath, UK",
+    "lat": 30.7352,
+    "lon": 79.0669,
+    "slope": 10.0
+  },
+  {
+    "id": "nainital_uk",
+    "name": "Nainital, UK",
+    "lat": 29.3919,
+    "lon": 79.4542,
+    "slope": 13.66
+  },
+  {
+    "id": "chamoli_uk",
+    "name": "Chamoli, UK",
+    "lat": 30.4137,
+    "lon": 79.3308,
+    "slope": 25.2
+  },
+  {
+    "id": "uttarkashi_uk",
+    "name": "Uttarkashi, UK",
+    "lat": 30.7268,
+    "lon": 78.4354,
+    "slope": 6.85
+  },
+  {
+    "id": "pithoragarh_uk",
+    "name": "Pithoragarh, UK",
+    "lat": 29.5829,
+    "lon": 80.2182,
+    "slope": 9.28
+  },
+  {
+    "id": "rudraprayag_uk",
+    "name": "Rudraprayag, UK",
+    "lat": 30.284,
+    "lon": 78.9834,
+    "slope": 14.21
+  },
+  {
+    "id": "tehri_garhwal_uk",
+    "name": "Tehri Garhwal, UK",
+    "lat": 30.3752,
+    "lon": 78.4337,
+    "slope": 15.72
+  },
+  {
+    "id": "bageshwar_uk",
+    "name": "Bageshwar, UK",
+    "lat": 29.8339,
+    "lon": 79.7697,
+    "slope": 18.24
+  },
+  {
+    "id": "almora_uk",
+    "name": "Almora, UK",
+    "lat": 29.5892,
+    "lon": 79.6467,
+    "slope": 16.63
+  },
+  {
+    "id": "gopeshwar_uk",
+    "name": "Gopeshwar, UK",
+    "lat": 30.41,
+    "lon": 79.32,
+    "slope": 17.86
+  },
+  {
+    "id": "munsiyari_uk",
+    "name": "Munsiyari, UK",
+    "lat": 30.0664,
+    "lon": 80.2381,
+    "slope": 12.91
+  },
+  {
+    "id": "rishikesh_slopes_uk",
+    "name": "Rishikesh slopes, UK",
+    "lat": 30.0869,
+    "lon": 78.2676,
+    "slope": 0.76
+  },
+  {
+    "id": "mussoorie_uk",
+    "name": "Mussoorie, UK",
+    "lat": 30.4598,
+    "lon": 78.0644,
+    "slope": 24.04
+  },
+  {
+    "id": "ramban_j_s_hwy_j_k",
+    "name": "Ramban (J-S Hwy), J&K",
+    "lat": 33.2422,
+    "lon": 75.2444,
+    "slope": 35.66
+  },
+  {
+    "id": "banihal_j_k",
+    "name": "Banihal, J&K",
+    "lat": 33.4367,
+    "lon": 75.1975,
+    "slope": 8.73
+  },
+  {
+    "id": "doda_j_k",
+    "name": "Doda, J&K",
+    "lat": 33.1483,
+    "lon": 75.5472,
+    "slope": 17.54
+  },
+  {
+    "id": "kishtwar_j_k",
+    "name": "Kishtwar, J&K",
+    "lat": 33.3124,
+    "lon": 75.7694,
+    "slope": 5.63
+  },
+  {
+    "id": "poonch_j_k",
+    "name": "Poonch, J&K",
+    "lat": 33.7736,
+    "lon": 74.0931,
+    "slope": 6.67
+  },
+  {
+    "id": "anantnag_j_k",
+    "name": "Anantnag, J&K",
+    "lat": 33.7311,
+    "lon": 75.1547,
+    "slope": 10.62
+  },
+  {
+    "id": "gangtok_sikkim",
+    "name": "Gangtok, Sikkim",
+    "lat": 27.3389,
+    "lon": 88.6065,
+    "slope": 23.49
+  },
+  {
+    "id": "mangan_north_sikkim",
+    "name": "Mangan, North Sikkim",
+    "lat": 27.5097,
+    "lon": 88.5279,
+    "slope": 23.43
+  },
+  {
+    "id": "lachung_sikkim",
+    "name": "Lachung, Sikkim",
+    "lat": 27.693,
+    "lon": 88.747,
+    "slope": 11.11
+  },
+  {
+    "id": "namchi_south_sikkim",
+    "name": "Namchi, South Sikkim",
+    "lat": 27.1654,
+    "lon": 88.3618,
+    "slope": 15.98
+  },
+  {
+    "id": "singtam_sikkim",
+    "name": "Singtam, Sikkim",
+    "lat": 27.2337,
+    "lon": 88.5038,
+    "slope": 20.14
+  },
+  {
+    "id": "rangpo_sikkim",
+    "name": "Rangpo, Sikkim",
+    "lat": 27.1756,
+    "lon": 88.5319,
+    "slope": 13.21
+  },
+  {
+    "id": "darjeeling_wb",
+    "name": "Darjeeling, WB",
+    "lat": 27.041,
+    "lon": 88.2663,
+    "slope": 12.18
+  },
+  {
+    "id": "kalimpong_wb",
+    "name": "Kalimpong, WB",
+    "lat": 27.0667,
+    "lon": 88.4667,
+    "slope": 19.64
+  },
+  {
+    "id": "kurseong_wb",
+    "name": "Kurseong, WB",
+    "lat": 26.8829,
+    "lon": 88.2782,
+    "slope": 19.95
+  },
+  {
+    "id": "mirik_wb",
+    "name": "Mirik, WB",
+    "lat": 26.8868,
+    "lon": 88.1833,
+    "slope": 9.75
+  },
+  {
+    "id": "siliguri_foothills_wb",
+    "name": "Siliguri foothills, WB",
+    "lat": 26.7271,
+    "lon": 88.3953,
+    "slope": 0.77
+  },
+  {
+    "id": "itanagar_arunachal_pradesh",
+    "name": "Itanagar, Arunachal Pradesh",
+    "lat": 27.0844,
+    "lon": 93.6053,
+    "slope": 9.55
+  },
+  {
+    "id": "tawang_arunachal_pradesh",
+    "name": "Tawang, Arunachal Pradesh",
+    "lat": 27.586,
+    "lon": 91.8687,
+    "slope": 9.68
+  },
+  {
+    "id": "bomdila_arunachal_pradesh",
+    "name": "Bomdila, Arunachal Pradesh",
+    "lat": 27.2645,
+    "lon": 92.4159,
+    "slope": 19.18
+  },
+  {
+    "id": "along_arunachal_pradesh",
+    "name": "Along, Arunachal Pradesh",
+    "lat": 28.1653,
+    "lon": 94.759,
+    "slope": 19.21
+  },
+  {
+    "id": "shillong_meghalaya",
+    "name": "Shillong, Meghalaya",
+    "lat": 25.5788,
+    "lon": 91.8933,
+    "slope": 6.48
+  },
+  {
+    "id": "cherrapunji_meghalaya",
+    "name": "Cherrapunji, Meghalaya",
+    "lat": 25.2969,
+    "lon": 91.7322,
+    "slope": 29.21
+  },
+  {
+    "id": "haflong_assam_dima_hasao",
+    "name": "Haflong, Assam (Dima Hasao)",
+    "lat": 25.1653,
+    "lon": 93.0127,
+    "slope": 13.83
+  },
+  {
+    "id": "lumding_hills_assam",
+    "name": "Lumding Hills, Assam",
+    "lat": 25.7474,
+    "lon": 93.1697,
+    "slope": 1.71
+  },
+  {
+    "id": "jowai_meghalaya",
+    "name": "Jowai, Meghalaya",
+    "lat": 25.4519,
+    "lon": 92.202,
+    "slope": 2.95
+  },
+  {
+    "id": "kohima_nagaland",
+    "name": "Kohima, Nagaland",
+    "lat": 25.6701,
+    "lon": 94.1077,
+    "slope": 11.9
+  },
+  {
+    "id": "dimapur_foothills_nagaland",
+    "name": "Dimapur foothills, Nagaland",
+    "lat": 25.9079,
+    "lon": 93.7273,
+    "slope": 1.37
+  },
+  {
+    "id": "imphal_east_hills_manipur",
+    "name": "Imphal East hills, Manipur",
+    "lat": 24.7952,
+    "lon": 93.9516,
+    "slope": 0.45
+  },
+  {
+    "id": "churachandpur_manipur",
+    "name": "Churachandpur, Manipur",
+    "lat": 24.3299,
+    "lon": 93.6774,
+    "slope": 3.41
+  },
+  {
+    "id": "aizawl_mizoram",
+    "name": "Aizawl, Mizoram",
+    "lat": 23.7271,
+    "lon": 92.7176,
+    "slope": 17.65
+  },
+  {
+    "id": "lunglei_mizoram",
+    "name": "Lunglei, Mizoram",
+    "lat": 22.8873,
+    "lon": 92.7289,
+    "slope": 24.1
+  },
+  {
+    "id": "champhai_mizoram",
+    "name": "Champhai, Mizoram",
+    "lat": 23.4567,
+    "lon": 93.3266,
+    "slope": 14.58
+  },
+  {
+    "id": "chooralmala_meppadi_wayanad_kerala",
+    "name": "Chooralmala/Meppadi, Wayanad, Kerala",
+    "lat": 11.554,
+    "lon": 76.13,
+    "slope": 9.71
+  },
+  {
+    "id": "munnar_idukki_kerala",
+    "name": "Munnar, Idukki, Kerala",
+    "lat": 10.0889,
+    "lon": 77.0595,
+    "slope": 10.06
+  },
+  {
+    "id": "kattippara_kozhikode_kerala",
+    "name": "Kattippara, Kozhikode, Kerala",
+    "lat": 11.4083,
+    "lon": 75.9475,
+    "slope": 4.68
+  },
+  {
+    "id": "peermedu_idukki_kerala",
+    "name": "Peermedu, Idukki, Kerala",
+    "lat": 9.5713,
+    "lon": 76.9881,
+    "slope": 8.89
+  },
+  {
+    "id": "devikulam_idukki_kerala",
+    "name": "Devikulam, Idukki, Kerala",
+    "lat": 10.0578,
+    "lon": 77.1011,
+    "slope": 14.88
+  },
+  {
+    "id": "vagamon_kerala",
+    "name": "Vagamon, Kerala",
+    "lat": 9.6856,
+    "lon": 76.9034,
+    "slope": 14.24
+  },
+  {
+    "id": "madikeri_coorg_karnataka",
+    "name": "Madikeri, Coorg, Karnataka",
+    "lat": 12.4244,
+    "lon": 75.7382,
+    "slope": 4.72
+  },
+  {
+    "id": "agumbe_shivamogga_karnataka",
+    "name": "Agumbe, Shivamogga, Karnataka",
+    "lat": 13.5042,
+    "lon": 75.0931,
+    "slope": 3.48
+  },
+  {
+    "id": "chikmagalur_karnataka",
+    "name": "Chikmagalur, Karnataka",
+    "lat": 13.3161,
+    "lon": 75.772,
+    "slope": 1.92
+  },
+  {
+    "id": "sakleshpur_karnataka",
+    "name": "Sakleshpur, Karnataka",
+    "lat": 12.9424,
+    "lon": 75.7852,
+    "slope": 5.12
+  },
+  {
+    "id": "siddapura_uttara_kannada_karnataka",
+    "name": "Siddapura, Uttara Kannada, Karnataka",
+    "lat": 14.3497,
+    "lon": 74.8885,
+    "slope": 4.18
+  },
+  {
+    "id": "nilgiris_coonoor_ooty_tn",
+    "name": "Nilgiris (Coonoor/Ooty), TN",
+    "lat": 11.4102,
+    "lon": 76.695,
+    "slope": 8.29
+  },
+  {
+    "id": "kodaikanal_tn",
+    "name": "Kodaikanal, TN",
+    "lat": 10.2381,
+    "lon": 77.4892,
+    "slope": 5.17
+  },
+  {
+    "id": "valparai_tn",
+    "name": "Valparai, TN",
+    "lat": 10.326,
+    "lon": 76.9495,
+    "slope": 4.35
+  },
+  {
+    "id": "gudalur_nilgiris_tn",
+    "name": "Gudalur, Nilgiris, TN",
+    "lat": 11.5009,
+    "lon": 76.4895,
+    "slope": 5.3
+  },
+  {
+    "id": "mahabaleshwar_maharashtra",
+    "name": "Mahabaleshwar, Maharashtra",
+    "lat": 17.9237,
+    "lon": 73.6586,
+    "slope": 5.75
+  },
+  {
+    "id": "ratnagiri_chiplun_maharashtra",
+    "name": "Ratnagiri/Chiplun, Maharashtra",
+    "lat": 17.5323,
+    "lon": 73.5186,
+    "slope": 1.39
+  },
+  {
+    "id": "ambeghat_tamhini_maharashtra",
+    "name": "Ambeghat/Tamhini, Maharashtra",
+    "lat": 18.4558,
+    "lon": 73.4192,
+    "slope": 19.68
+  },
+  {
+    "id": "lonavala_khandala_maharashtra",
+    "name": "Lonavala/Khandala, Maharashtra",
+    "lat": 18.7546,
+    "lon": 73.4062,
+    "slope": 1.94
+  },
+  {
+    "id": "igatpuri_maharashtra",
+    "name": "Igatpuri, Maharashtra",
+    "lat": 19.695,
+    "lon": 73.5626,
+    "slope": 0.87
+  },
+  {
+    "id": "matheran_maharashtra",
+    "name": "Matheran, Maharashtra",
+    "lat": 18.9866,
+    "lon": 73.2669,
+    "slope": 5.46
+  },
+  {
+    "id": "malshej_ghat_maharashtra",
+    "name": "Malshej Ghat, Maharashtra",
+    "lat": 19.3502,
+    "lon": 73.7831,
+    "slope": 15.05
+  },
+  {
+    "id": "lucknow_up_plains",
+    "name": "Lucknow, UP (plains)",
+    "lat": 26.8467,
+    "lon": 80.9462,
+    "slope": 1.12
+  },
+  {
+    "id": "kanpur_up_plains",
+    "name": "Kanpur, UP (plains)",
+    "lat": 26.4499,
+    "lon": 80.3319,
+    "slope": 0.87
+  },
+  {
+    "id": "patna_bihar_plains",
+    "name": "Patna, Bihar (plains)",
+    "lat": 25.5941,
+    "lon": 85.1376,
+    "slope": 1.0
+  },
+  {
+    "id": "varanasi_up_plains",
+    "name": "Varanasi, UP (plains)",
+    "lat": 25.3176,
+    "lon": 82.9739,
+    "slope": 0.66
+  },
+  {
+    "id": "prayagraj_up_plains",
+    "name": "Prayagraj, UP (plains)",
+    "lat": 25.4358,
+    "lon": 81.8463,
+    "slope": 0.96
+  },
+  {
+    "id": "gorakhpur_up_plains",
+    "name": "Gorakhpur, UP (plains)",
+    "lat": 26.7606,
+    "lon": 83.3732,
+    "slope": 0.84
+  },
+  {
+    "id": "bareilly_up_plains",
+    "name": "Bareilly, UP (plains)",
+    "lat": 28.367,
+    "lon": 79.4304,
+    "slope": 0.66
+  },
+  {
+    "id": "meerut_up_plains",
+    "name": "Meerut, UP (plains)",
+    "lat": 28.9845,
+    "lon": 77.7064,
+    "slope": 0.62
+  },
+  {
+    "id": "jaipur_rajasthan_dry",
+    "name": "Jaipur, Rajasthan (dry)",
+    "lat": 26.9124,
+    "lon": 75.7873,
+    "slope": 0.78
+  },
+  {
+    "id": "jodhpur_rajasthan_arid",
+    "name": "Jodhpur, Rajasthan (arid)",
+    "lat": 26.2389,
+    "lon": 73.0243,
+    "slope": 0.3
+  },
+  {
+    "id": "bikaner_rajasthan_desert",
+    "name": "Bikaner, Rajasthan (desert)",
+    "lat": 28.0229,
+    "lon": 73.3119,
+    "slope": 0.77
+  },
+  {
+    "id": "udaipur_rajasthan_plateau",
+    "name": "Udaipur, Rajasthan (plateau)",
+    "lat": 24.5854,
+    "lon": 73.7125,
+    "slope": 1.47
+  },
+  {
+    "id": "kota_rajasthan_flat",
+    "name": "Kota, Rajasthan (flat)",
+    "lat": 25.2138,
+    "lon": 75.8648,
+    "slope": 1.51
+  },
+  {
+    "id": "nagpur_maharashtra_plateau",
+    "name": "Nagpur, Maharashtra (plateau)",
+    "lat": 21.1458,
+    "lon": 79.0882,
+    "slope": 2.67
+  },
+  {
+    "id": "hyderabad_telangana_plateau",
+    "name": "Hyderabad, Telangana (plateau)",
+    "lat": 17.385,
+    "lon": 78.4867,
+    "slope": 1.36
+  },
+  {
+    "id": "bengaluru_karnataka_plateau",
+    "name": "Bengaluru, Karnataka (plateau)",
+    "lat": 12.9716,
+    "lon": 77.5946,
+    "slope": 2.41
+  },
+  {
+    "id": "bhopal_mp_plateau",
+    "name": "Bhopal, MP (plateau)",
+    "lat": 23.2599,
+    "lon": 77.4126,
+    "slope": 1.55
+  },
+  {
+    "id": "indore_mp_plateau",
+    "name": "Indore, MP (plateau)",
+    "lat": 22.7196,
+    "lon": 75.8577,
+    "slope": 1.81
+  },
+  {
+    "id": "raipur_chhattisgarh_plains",
+    "name": "Raipur, Chhattisgarh (plains)",
+    "lat": 21.2514,
+    "lon": 81.6296,
+    "slope": 0.71
+  },
+  {
+    "id": "pune_city_maharashtra_urban_plateau",
+    "name": "Pune city, Maharashtra (urban plateau)",
+    "lat": 18.5204,
+    "lon": 73.8567,
+    "slope": 2.9
+  },
+  {
+    "id": "aurangabad_maharashtra_plateau",
+    "name": "Aurangabad, Maharashtra (plateau)",
+    "lat": 19.8762,
+    "lon": 75.3433,
+    "slope": 1.55
+  },
+  {
+    "id": "akola_maharashtra_flat",
+    "name": "Akola, Maharashtra (flat)",
+    "lat": 20.7002,
+    "lon": 77.0082,
+    "slope": 1.25
+  },
+  {
+    "id": "amravati_maharashtra_flat",
+    "name": "Amravati, Maharashtra (flat)",
+    "lat": 20.9374,
+    "lon": 77.7796,
+    "slope": 1.23
+  },
+  {
+    "id": "chennai_tn_coastal",
+    "name": "Chennai, TN (coastal)",
+    "lat": 13.0827,
+    "lon": 80.2707,
+    "slope": 1.48
+  },
+  {
+    "id": "visakhapatnam_ap_coast",
+    "name": "Visakhapatnam, AP (coast)",
+    "lat": 17.6868,
+    "lon": 83.2185,
+    "slope": 15.47
+  },
+  {
+    "id": "bhubaneswar_odisha_coast",
+    "name": "Bhubaneswar, Odisha (coast)",
+    "lat": 20.2961,
+    "lon": 85.8245,
+    "slope": 1.46
+  },
+  {
+    "id": "kolkata_wb_delta",
+    "name": "Kolkata, WB (delta)",
+    "lat": 22.5726,
+    "lon": 88.3639,
+    "slope": 0.97
+  },
+  {
+    "id": "ahmedabad_gujarat_flat",
+    "name": "Ahmedabad, Gujarat (flat)",
+    "lat": 23.0225,
+    "lon": 72.5714,
+    "slope": 1.46
+  },
+  {
+    "id": "surat_gujarat_flat_coast",
+    "name": "Surat, Gujarat (flat coast)",
+    "lat": 21.1702,
+    "lon": 72.8311,
+    "slope": 1.76
+  },
+  {
+    "id": "chandigarh_foothills_plains",
+    "name": "Chandigarh (foothills/plains)",
+    "lat": 30.7333,
+    "lon": 76.7794,
+    "slope": 1.17
+  },
+  {
+    "id": "ludhiana_punjab_plains",
+    "name": "Ludhiana, Punjab (plains)",
+    "lat": 30.901,
+    "lon": 75.8573,
+    "slope": 0.79
+  },
+  {
+    "id": "amritsar_punjab_plains",
+    "name": "Amritsar, Punjab (plains)",
+    "lat": 31.634,
+    "lon": 74.8723,
+    "slope": 1.12
+  },
+  {
+    "id": "hisar_haryana_flat",
+    "name": "Hisar, Haryana (flat)",
+    "lat": 29.1492,
+    "lon": 75.7217,
+    "slope": 0.83
+  },
+  {
+    "id": "karnal_haryana_flat",
+    "name": "Karnal, Haryana (flat)",
+    "lat": 29.6857,
+    "lon": 76.9905,
+    "slope": 0.97
+  },
+  {
+    "id": "guwahati_assam_valley",
+    "name": "Guwahati, Assam (valley)",
+    "lat": 26.1445,
+    "lon": 91.7362,
+    "slope": 0.86
+  },
+  {
+    "id": "jorhat_assam_plains",
+    "name": "Jorhat, Assam (plains)",
+    "lat": 26.7509,
+    "lon": 94.2037,
+    "slope": 0.45
+  },
+  {
+    "id": "tezpur_assam_valley",
+    "name": "Tezpur, Assam (valley)",
+    "lat": 26.6338,
+    "lon": 92.784,
+    "slope": 1.18
+  },
+  {
+    "id": "silchar_assam_valley",
+    "name": "Silchar, Assam (valley)",
+    "lat": 24.8333,
+    "lon": 92.7789,
+    "slope": 0.79
+  },
+  {
+    "id": "agartala_tripura_low_hills",
+    "name": "Agartala, Tripura (low hills)",
+    "lat": 23.8315,
+    "lon": 91.2868,
+    "slope": 0.56
+  },
+  {
+    "id": "madurai_tn_dry_inland",
+    "name": "Madurai, TN (dry inland)",
+    "lat": 9.9252,
+    "lon": 78.1198,
+    "slope": 0.92
+  },
+  {
+    "id": "tiruchirappalli_tn_dry",
+    "name": "Tiruchirappalli, TN (dry)",
+    "lat": 10.7905,
+    "lon": 78.7047,
+    "slope": 0.87
+  },
+  {
+    "id": "mysuru_karnataka_mild_plateau",
+    "name": "Mysuru, Karnataka (mild plateau)",
+    "lat": 12.2958,
+    "lon": 76.6394,
+    "slope": 1.95
+  },
+  {
+    "id": "bellary_karnataka_dry",
+    "name": "Bellary, Karnataka (dry)",
+    "lat": 15.1394,
+    "lon": 76.9214,
+    "slope": 1.26
+  },
+  {
+    "id": "tirupati_ap_dry_hills",
+    "name": "Tirupati, AP (dry hills)",
+    "lat": 13.6288,
+    "lon": 79.4192,
+    "slope": 1.39
+  }
+]

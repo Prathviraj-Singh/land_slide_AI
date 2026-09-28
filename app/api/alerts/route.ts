@@ -55,7 +55,7 @@ async function getMonitoredStates(): Promise<string[]> {
 
 export async function GET(request: NextRequest) {
   try {
-    // 1. Fetch system-generated alerts from MySQL
+    // 1. Fetch system-generated alerts from PostgreSQL
     const systemAlerts = await getRecentAlerts(30);
     const systemNormalized = systemAlerts.map((a) => ({
       id: `sys-${a.id}`,
